@@ -21,7 +21,7 @@ public class TDPlayer : MonoBehaviour {
     // Live variables
     private int GunLevel = 0;
     private const int MaxGunLevel = 2;
-    private float GunDownTime;
+    private float GunDownTime = 0;
 
 	// Use this for initialization
 	void Start ()
