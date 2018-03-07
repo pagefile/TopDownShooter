@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour, IDamageMessageTarget
+public class Destructable : MonoBehaviour, IDamageMessageTarget
 {
     [SerializeField]
     private float MaxHealth = 100.0f;
@@ -25,14 +25,8 @@ public class HealthBar : MonoBehaviour, IDamageMessageTarget
     }
 
     // Use this for initialization
-    void Start ()
+    public virtual void Start ()
     {
         currentHealth = MaxHealth;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
+    }
 }

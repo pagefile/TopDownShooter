@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour {
         Destroy(gameObject, Lifetime);
 	}
 
-    private void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col)
     {
         ExecuteEvents.Execute<IDamageMessageTarget>(col.gameObject, null, (x, y) => x.ApplyDamage(Damage));
         Destroy(gameObject);

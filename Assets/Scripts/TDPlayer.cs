@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class TDPlayer : MonoBehaviour {
+public class TDPlayer : Destructable {
 
     [SerializeField]
     private float Speed = 20.0f;
@@ -12,22 +12,19 @@ public class TDPlayer : MonoBehaviour {
     [SerializeField]
     private Bullet BulletType;
     [SerializeField]
-    private List<Transform> Level1Guns;
+    private List<Gun> Level1Guns;
     [SerializeField]
-    private List<Transform> Level2Guns;
+    private List<Gun> Level2Guns;
     [SerializeField]
-    private List<Transform> Level3Guns;
+    private List<Gun> Level3Guns;
 
     // Live variables
     private int GunLevel = 0;
     private const int MaxGunLevel = 2;
     private float GunDownTime = 0;
 
-	// Use this for initialization
-	void Start ()
-    {
-
-	}
+    // Delegates
+    public delegate void OnDeath();
 	
 	// Update is called once per frame
 	void Update ()
@@ -52,34 +49,20 @@ public class TDPlayer : MonoBehaviour {
         {
             transform.Translate(Vector3.forward * -Speed * Time.deltaTime);
         }
+        bool fireGuns = Input.GetButton("primaryFire");
 
         // Guns
         // TODO: Refactor this. It could just use a list of the lists...as ugly as that sounds
-        if(Input.GetButton("primaryFire") && GunDownTime >= GunFireInterval)
+        bool triggerDown = Input.GetButton("primaryFire");
+        List<Gun> guns = Level1Guns;
+        if(GunLevel == 1)
         {
-            GunDownTime = 0.0f;
-            List<Transform> guns = null;
-            if (GunLevel == 0)
-            {
-                guns = Level1Guns;
-            }
-            else if(GunLevel == 1)
-            {
-                guns = Level2Guns;
-            }
-            else if(GunLevel == 2)
-            {
-                guns = Level3Guns;
-            }
-            if(guns == null)
-            {
-                // something fucked up. Really just wanna get rid of the warning though;
-                return;
-            }
-            for (int i = 0; i < guns.Count; i++)
-            {
-                Instantiate(BulletType, guns[i].position, guns[i].rotation);
-            }
+            guns = Level2Guns;
         }
+        else if(GunLevel == 2)
+        {
+            guns = Level3Guns;
+        }
+        guns.ForEach(x => x.TriggerDown = triggerDown);
     }
 }

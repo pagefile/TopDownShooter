@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class BasicEnemy : MonoBehaviour
+public class BasicEnemy : Destructable
 {
     [SerializeField]
     private float Speed = 10.0f;
@@ -18,8 +18,9 @@ public class BasicEnemy : MonoBehaviour
     private float GunDownTime = 0;
 
 	// Use this for initialization
-	void Start()
+	override public void Start()
     {
+        base.Start();
         // Check for necessary components
         Assert.IsTrue(GunPoint != null, "No gunpoint specified on enemy!");
         Assert.IsTrue(BulletType != null, "No bullet type specified on enemy!");
