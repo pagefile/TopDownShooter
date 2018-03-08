@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
 
     [SerializeField]
     private float Speed = 25.0f;
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour {
     private float Lifetime = 3.0f;
 
 	// Use this for initialization
-	void Start () 
+    void Start () 
     {
         Rigidbody rbody = GetComponent<Rigidbody>();
         Assert.IsTrue(rbody != null, "Bullet has no rigid body!");
@@ -32,5 +33,5 @@ public class Bullet : MonoBehaviour {
     void Update()
     {
 		
-	}
+    }
 }
