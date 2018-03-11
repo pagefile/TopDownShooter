@@ -8,22 +8,23 @@ public class GameMode : MonoBehaviour
 {
     // TODO: HACK
     [SerializeField]
-    private TDPlayer Player;
+    private Fighter PlayerShip;
     [SerializeField]
     private Text HealthText;
     [SerializeField]
-    TDPlayer PlayerShip;
-    [SerializeField]
-    Transform SpawnPoint;
+    private Transform SpawnPoint;
     [SerializeField]
     float RespawnTime;
     [SerializeField]
     PauseScreen PauseScreen;
 
+    #region Member Variables
     private float spawnTimer = 0;
     private uint Score;
-    private TDPlayer activePlayer;
+    private Fighter activePlayer;
     private bool gamePaused = false;
+    private PlayerController playerController;
+    #endregion
 
     PauseScreen pauseScreenInstance;
 
@@ -35,6 +36,7 @@ public class GameMode : MonoBehaviour
         // TODO: Pause screen should manage its own active state
         pauseScreenInstance.gameObject.SetActive(false);
         pauseScreenInstance.Init(this);
+        playerController = ScriptableObject.CreateInstance<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -47,8 +49,8 @@ public class GameMode : MonoBehaviour
             if(spawnTimer <= 0.0f)
             {
                 activePlayer = Instantiate(PlayerShip, SpawnPoint.position, SpawnPoint.rotation);
+                playerController.Init(activePlayer);
                 spawnTimer = RespawnTime;
-                //player.OnDeath += OnPlayerDeath;
             }
         }
 

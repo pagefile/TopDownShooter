@@ -14,7 +14,7 @@ public class Destructable : MonoBehaviour, IDamageMessageTarget
     }
 
     // IDamageMessageTarget
-    public void ApplyDamage(float amount, Damage.Type type = Damage.Type.Unknown, GameObject source = null)
+    public virtual void ApplyDamage(float amount, Damage.Type type = Damage.Type.Unknown, GameObject source = null)
     {
         currentHealth -= amount;
         // TODO: Real death handling
