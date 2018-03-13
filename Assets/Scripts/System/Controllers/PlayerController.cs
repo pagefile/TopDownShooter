@@ -8,7 +8,6 @@ public class PlayerController : FighterController
     public override void Init(Fighter entity)
     {
         base.Init(entity);
-        fighter = entity;
     }
 
     public override void Update()

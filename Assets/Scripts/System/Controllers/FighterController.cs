@@ -6,6 +6,17 @@ public abstract class FighterController : ScriptableObject
 {
     protected Fighter fighter;
 
-    public virtual void Init(Fighter entity) { entity.Controller = this; }
-    public virtual void Update() { }
+    public virtual void Init(Fighter entity)
+    {
+        entity.Controller = this;
+        fighter = entity;
+    }
+
+    public virtual void Reset()
+    {
+        fighter = null;
+    }
+
+    public abstract void Update();
+
 }

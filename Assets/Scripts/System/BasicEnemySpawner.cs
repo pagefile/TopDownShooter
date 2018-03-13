@@ -5,11 +5,13 @@ using UnityEngine;
 public class BasicEnemySpawner : MonoBehaviour 
 {
     [SerializeField]
-    private GameObject SpawnEnemey;
+    private Fighter SpawnEnemey;
     [SerializeField]
     private uint NumberToSpawn = 10;
     [SerializeField]
     private float SpawnInterval = 3.0f;
+    [SerializeField]
+    private FighterController AIController;
     [SerializeField]
     private float Radius = 0.0f;
 
@@ -29,7 +31,9 @@ public class BasicEnemySpawner : MonoBehaviour
         {
             spawnDownTime = 0.0f;
             float range = Random.Range(-Radius, Radius);
-            Instantiate(SpawnEnemey, new Vector3(range, transform.position.y, transform.position.z), transform.rotation);
+            Fighter enemy = Instantiate(SpawnEnemey, new Vector3(range, transform.position.y, transform.position.z), transform.rotation);
+            FighterController controller = Instantiate(AIController);
+            controller.Init(enemy);
         }
 	}
 }

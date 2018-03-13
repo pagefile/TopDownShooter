@@ -24,6 +24,8 @@ public class GameMode : MonoBehaviour
     private Fighter activePlayer;
     private bool gamePaused = false;
     private PlayerController playerController;
+    // SUPERHACK PART 2
+    private string playerName = "";
     #endregion
 
     PauseScreen pauseScreenInstance;
@@ -43,13 +45,14 @@ public class GameMode : MonoBehaviour
 	void Update ()
     {
         // SUPERHACK: Really I should hook into an OnDeath event from the player...but I want this now
-        if(GameObject.Find("TDFighterRoot(Clone)") == null)
+        if(GameObject.Find(playerName) == null)
         {
             spawnTimer -= Time.deltaTime;
             if(spawnTimer <= 0.0f)
             {
                 activePlayer = Instantiate(PlayerShip, SpawnPoint.position, SpawnPoint.rotation);
                 playerController.Init(activePlayer);
+                playerName = activePlayer.name;
                 spawnTimer = RespawnTime;
             }
         }

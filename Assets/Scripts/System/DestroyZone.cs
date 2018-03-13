@@ -6,7 +6,6 @@ public class DestroyZone : MonoBehaviour
 {
     void OnTriggerEnter(Collider col)
     {
-        Debug.Log("Destroyed!");
         Destroy(col.gameObject);
     }
 }

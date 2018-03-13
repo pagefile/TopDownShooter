@@ -25,7 +25,7 @@ public class Destructable : MonoBehaviour, IDamageMessageTarget
     }
 
     // Use this for initialization
-    public virtual void Start ()
+    protected virtual void Start ()
     {
         currentHealth = MaxHealth;
     }

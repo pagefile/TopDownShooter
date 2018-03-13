@@ -18,7 +18,7 @@ public class BasicEnemy : Destructable
     private float GunDownTime = 0;
 
 	// Use this for initialization
-	override public void Start()
+	protected override void Start()
     {
         base.Start();
         // Check for necessary components

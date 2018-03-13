@@ -35,7 +35,7 @@ public class Fighter : Destructable
 
     #region Unity Functions
     // Use this for initialization
-    public override void Start ()
+    protected override void Start ()
     {
         base.Start();
         movementAxis = new Vector3();
@@ -43,10 +43,15 @@ public class Fighter : Destructable
     }
 	
     // Update is called once per frame
-    void Update ()
+    protected virtual void Update ()
     {
         Controller.Update();
         transform.Translate(movementAxis * MaxMoveSpeed * Time.deltaTime);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        Controller.Reset();
     }
     #endregion
 }
