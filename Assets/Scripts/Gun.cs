@@ -36,7 +36,7 @@ public class Gun : MonoBehaviour
         if(gunDownTime >= FireInterval && triggerDown)
         {
             gunDownTime = 0.0f;
-            Instantiate(Projectile, MuzzlePoint.transform.position, MuzzlePoint.transform.rotation);
+            Bullet projectile = Instantiate(Projectile, MuzzlePoint.transform.position, MuzzlePoint.transform.rotation);
         }
 	}
 }

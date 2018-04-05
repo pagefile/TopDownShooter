@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Pagefile.LevelManagement;
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    private string StartScene;
+    private LevelInfo StartScene;
     
     public void OnStartClick()
     {
         // Start game lol
-        SceneManager.LoadScene(StartScene);
+        LevelLoader.LoadLevel(StartScene);
     }
 
     public void OnExitClick()

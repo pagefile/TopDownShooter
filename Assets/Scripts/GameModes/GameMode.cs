@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using Pagefile.LevelManagement;
 
 public class GameMode : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class GameMode : MonoBehaviour
     float RespawnTime;
     [SerializeField]
     PauseScreen PauseScreen;
+    [SerializeField]
+    LevelInfo MainMenu;
 
     #region Member Variables
     private float spawnTimer = 0;
@@ -100,6 +102,6 @@ public class GameMode : MonoBehaviour
     {
         // TODO: Find a good place to put this.
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("MainMenu");
+        LevelLoader.LoadLevel(MainMenu);
     }
 }
